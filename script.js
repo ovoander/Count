@@ -9,6 +9,13 @@ const addCount = () => {
     localStorage.setItem("count", count);
 };
 
+const subtractCount = () => {
+    if (count > 0) {
+        count--;
+    }
+    countElement.textContent = count;
+    localStorage.setItem("count", count);
+};
 const resetCount = () => {
     count = 0;
     countElement.textContent = count;
