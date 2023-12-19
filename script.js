@@ -1,24 +1,24 @@
 const countElement = document.getElementById("count");
 
 let count = localStorage.getItem("count") || 0;
-countElement.textContent = count;
+countElement.innerText = count;
 
-const addCount = () => {
+function addCount() {
     count++;
-    countElement.textContent = count;
+    countElement.innerText = count;
     localStorage.setItem("count", count);
-};
+}
 
-const subtractCount = () => {
+function subtractCount() {
     if (count > 0) {
         count--;
+        countElement.innerText = count;
+        localStorage.setItem("count", count);
     }
-    countElement.textContent = count;
-    localStorage.setItem("count", count);
-};
+}
 
-const resetCount = () => {
+function resetCount() {
     count = 0;
-    countElement.textContent = count;
+    countElement.innerText = count;
     localStorage.setItem("count", count);
-};
+}
