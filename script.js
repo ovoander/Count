@@ -3,13 +3,13 @@ const countElement = document.getElementById("count");
 let count = localStorage.getItem("count") || 0;
 countElement.innerText = count;
 
-function addCount() {
+const addCount = () => {
     count++;
     countElement.innerText = count;
     localStorage.setItem("count", count);
 }
 
-function subtractCount() {
+const subtractCount = () => {
     if (count > 0) {
         count--;
         countElement.innerText = count;
@@ -17,7 +17,7 @@ function subtractCount() {
     }
 }
 
-function resetCount() {
+const resetCount = () => {
     count = 0;
     countElement.innerText = count;
     localStorage.setItem("count", count);
