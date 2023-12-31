@@ -1,24 +1,19 @@
-const countElement = document.getElementById("count");
-
-let count = localStorage.getItem("count") || 0;
-countElement.innerText = count;
-
-const addCount = () => {
-    count++;
-    countElement.innerText = count;
-    localStorage.setItem("count", count);
-}
-
-const subtractCount = () => {
-    if (count > 0) {
-        count--;
-        countElement.innerText = count;
-        localStorage.setItem("count", count);
+const toggleTheme = () => {
+    if (localStorage.theme === "dark") {
+        localStorage.theme = "light";
+    } else {
+        localStorage.theme = "dark";
     }
-}
+    document.documentElement.classList.toggle("dark");
+};
 
-const resetCount = () => {
-    count = 0;
-    countElement.innerText = count;
-    localStorage.setItem("count", count);
-}
+const setThemeOnLoad = () => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+        document.documentElement.classList.add("dark");
+    } else if (savedTheme === "light") {
+        document.documentElement.classList.remove("dark");
+    }
+};
+
+setThemeOnLoad();
