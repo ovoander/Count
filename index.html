@@ -1,16 +1,38 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="output.css" />
+        <link rel="icon" href="logo.svg" />
+        <link rel="stylesheet" href="build.css" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Count</title>
     </head>
+    <script>
+        const toggleTheme = () => {
+            if (localStorage.theme === "dark") {
+                localStorage.theme = "light";
+            } else {
+                localStorage.theme = "dark";
+            }
+            document.documentElement.classList.toggle("dark");
+        };
+
+        const setThemeOnLoad = () => {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.documentElement.classList.add("dark");
+            } else if (savedTheme === "light") {
+                document.documentElement.classList.remove("dark");
+            }
+        };
+
+        setThemeOnLoad();
+    </script>
     <body
-        class="overflow-y-hidden bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100"
+        class="overflow-y-hidden bg-zinc-100 text-black dark:bg-zinc-800 dark:text-white"
     >
         <div
-            class="sticky top-3 z-50 m-3 mx-auto flex w-4/5 select-none items-center rounded-xl bg-zinc-300 p-3 text-xl font-bold shadow-lg shadow-black/30 sm:text-2xl md:text-3xl lg:text-4xl dark:bg-zinc-800"
+            class="sticky top-3 z-50 m-3 mx-auto flex w-4/5 select-none items-center rounded-xl bg-zinc-300 p-3 text-xl font-bold shadow-lg shadow-black/30 sm:text-2xl md:text-3xl lg:text-4xl dark:bg-zinc-700"
         >
             Count
             <div
@@ -22,7 +44,7 @@
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                     fill="currentColor"
-                    class="h-5 w-5 rounded-full p-1 transition-[background-color] hover:bg-zinc-400 active:fill-emerald-400 sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 dark:hover:bg-zinc-700"
+                    class="h-5 w-5 rounded-full p-1 transition-[background-color] hover:bg-zinc-400 active:fill-emerald-400 sm:h-6 sm:w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 dark:hover:bg-zinc-600"
                 >
                     <path
                         fill-rule="evenodd"
@@ -30,6 +52,40 @@
                         clip-rule="evenodd"
                     />
                 </svg>
+            </div>
+        </div>
+        <div class="flex h-screen items-center justify-center">
+            <div class="mb-32">
+                <div
+                    class="rounded-lg bg-zinc-300 p-2 shadow-lg shadow-black/30 dark:bg-zinc-700"
+                >
+                    <div
+                        class="m-2 flex h-8 w-80 select-none items-center justify-center rounded bg-zinc-200 text-lg font-bold shadow-md shadow-black/30 dark:bg-zinc-600"
+                        id="count"
+                    >
+                        0
+                    </div>
+                    <div class="flex select-none">
+                        <div
+                            class="m-2 flex h-8 w-24 cursor-pointer items-center justify-center rounded bg-emerald-400 text-lg font-medium shadow-md shadow-emerald-400/30 active:bg-emerald-500"
+                            onclick="addCount()"
+                        >
+                            +
+                        </div>
+                        <div
+                            class="m-2 flex h-8 w-24 cursor-pointer items-center justify-center rounded bg-emerald-400 text-lg font-medium shadow-md shadow-emerald-400/30 active:bg-emerald-500"
+                            onclick="subtractCount()"
+                        >
+                            -
+                        </div>
+                        <div
+                            class="m-2 flex h-8 w-24 cursor-pointer items-center justify-center rounded bg-emerald-400 text-lg font-medium shadow-md shadow-emerald-400/30 active:bg-emerald-500"
+                            onclick="resetCount()"
+                        >
+                            CE
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <script src="script.js"></script>
